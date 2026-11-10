@@ -39,7 +39,13 @@ function Collections() {
 
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {collections.map((c) => (
-            <article key={c.slug} className="group relative overflow-hidden bg-ink">
+            <Link
+              key={c.slug}
+              to="/collection/$slug"
+              params={{ slug: c.slug }}
+              aria-label={`Explore ${c.name}`}
+              className="group relative block overflow-hidden bg-ink"
+            >
               <img
                 src={c.image}
                 alt={c.name}
@@ -53,7 +59,7 @@ function Collections() {
                 <p className="arabic text-xs text-ink-foreground/70">{c.nameAr}</p>
                 <p className="mt-2 max-w-xs text-xs text-ink-foreground/70">{c.description}</p>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
 
@@ -64,7 +70,11 @@ function Collections() {
             <div key={c.slug} className="mt-16">
               <div className="flex items-end justify-between border-b border-border pb-3">
                 <h2 className="serif-title text-2xl">{c.name}</h2>
-                <Link to="/shop" className="label-xs text-muted-foreground hover:text-foreground">
+                <Link
+                  to="/collection/$slug"
+                  params={{ slug: c.slug }}
+                  className="label-xs text-muted-foreground hover:text-foreground"
+                >
                   View all
                 </Link>
               </div>

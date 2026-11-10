@@ -5,7 +5,6 @@ import storyImage from "@/assets/story.jpg";
 import { listProducts } from "@/lib/store.functions";
 import { mapProduct } from "@/lib/catalog";
 import { ProductCard } from "@/components/site/ProductCard";
-import { LOOKS, LookCard } from "@/components/site/Lookbook";
 
 export const Route = createFileRoute("/")({
   loader: async () => ({ products: await listProducts() }),
@@ -122,30 +121,6 @@ function Home() {
               className="label-xs flex h-11 items-center justify-center bg-ink px-10 text-ink-foreground transition-opacity hover:opacity-90"
             >
               View All Products
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* LOOKBOOK */}
-      <section className="bg-background py-16 sm:py-20">
-        <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
-          <div className="text-center">
-            <p className="eyebrow text-muted-foreground">Season Edit</p>
-            <h2 className="serif-title mt-3 text-3xl sm:text-[2.5rem]">The Lookbook</h2>
-            <p className="arabic mt-1 text-sm text-muted-foreground">نسّق إطلالتك</p>
-          </div>
-          <div className="mt-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-            {LOOKS.map((look, i) => (
-              <LookCard key={look.id} look={look} products={allProducts} index={i} />
-            ))}
-          </div>
-          <div className="mt-12 flex justify-center">
-            <Link
-              to="/lookbook"
-              className="label-xs flex h-11 items-center justify-center border border-foreground px-10 transition-colors hover:bg-foreground hover:text-background"
-            >
-              View Lookbook
             </Link>
           </div>
         </div>

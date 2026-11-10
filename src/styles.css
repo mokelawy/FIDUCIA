@@ -17,7 +17,7 @@
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-foreground: var(--color-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
@@ -66,6 +66,33 @@
   --product-surface: oklch(from #181914 l c h);
   --product-ink: var(--ink-foreground);
   --product-gold: var(--ink-foreground);
+}
+
+html[data-theme="day"] {
+  color-scheme: light;
+  --ink-foreground: oklch(0.48 0.105 78);
+  --background: var(--product-surface);
+  --foreground: oklch(0.22 0.012 85);
+  --card: oklch(0.985 0.008 90);
+  --card-foreground: oklch(0.22 0.012 85);
+  --popover: oklch(0.985 0.008 90);
+  --popover-foreground: oklch(0.22 0.012 85);
+  --primary: var(--product-surface);
+  --primary-foreground: oklch(0.22 0.012 85);
+  --secondary: oklch(0.94 0.014 88);
+  --secondary-foreground: oklch(0.22 0.012 85);
+  --muted: oklch(0.94 0.014 88);
+  --muted-foreground: oklch(0.46 0.018 82);
+  --accent: oklch(0.94 0.014 88);
+  --accent-foreground: oklch(0.22 0.012 85);
+  --border: oklch(0.22 0.012 85 / 18%);
+  --input: oklch(0.22 0.012 85 / 28%);
+  --ring: oklch(0.48 0.105 78);
+  --ink: oklch(0.91 0.018 88);
+  --sand: oklch(0.97 0.012 90);
+  --product-surface: oklch(0.97 0.012 90);
+  --product-ink: oklch(0.22 0.012 85);
+  --product-gold: oklch(0.48 0.105 78);
 }
 
 @layer base {

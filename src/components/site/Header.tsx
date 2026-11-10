@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { Menu, Search, ShoppingBag, User, X } from "lucide-react";
+import { Menu, Moon, Search, ShoppingBag, Sun, User, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/cart";
 import { CartDrawer } from "./CartDrawer";
 import { cn } from "@/lib/utils";
@@ -19,7 +20,21 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
+  const [theme, setTheme] = useState<"night" | "day">("night");
+  const [themeReady, setThemeReady] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem("fiducia-theme");
+    if (savedTheme === "day" || savedTheme === "night") setTheme(savedTheme);
+    setThemeReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (!themeReady) return;
+    document.documentElement.dataset["theme"] = theme;
+    window.localStorage.setItem("fiducia-theme", theme);
+  }, [theme, themeReady]);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
@@ -61,6 +76,17 @@ export function Header() {
           </nav>
 
           <div className="flex items-center justify-end gap-4 sm:gap-5">
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              aria-label={theme === "night" ? "Switch to day mode" : "Switch to night mode"}
+              title={theme === "night" ? "Day mode" : "Night mode"}
+              onClick={() => setTheme((current) => current === "night" ? "day" : "night")}
+              className="h-9 w-9 text-ink-foreground hover:bg-ink-foreground/10 hover:text-ink-foreground"
+            >
+              {theme === "night" ? <Sun aria-hidden /> : <Moon aria-hidden />}
+            </Button>
             <button
               type="button"
               aria-label="Search products"
